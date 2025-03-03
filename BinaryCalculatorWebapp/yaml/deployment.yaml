@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: binarycalculator-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: binarycalculator
+  template:
+    metadata:
+      labels:
+        app: binarycalculator
+    spec:
+      containers:
+      - name: binarycalculator
+        image: northamerica-northeast2-docker.pkg.dev/melodic-climber-452016-i3/sofe3980u/binarycalculator:v3
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: gcr-secret  # Ensure this secret exists for private images
